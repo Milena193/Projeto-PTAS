@@ -31,7 +31,7 @@ router.post('/usuarios', (req, res)=> {
     res.status(201).json(novoUsuario)
 });
 
-router.put('/usuarios/:id ' , (req,res) =>{
+router.put('/usuarios/:id' , (req,res) =>{
     const id = Number(req.params.id);
     const usuario = usuarios.find(usuario => usuario.id===id);
     if(!usuario){
@@ -57,7 +57,7 @@ router.delete('/usuarios/:id', (req,res)=>{
         });
     }
 
-    usuarios.slice(indice, 1);
+    usuarios.splice(indice, 1);
     res.json({
         mensagem:'Usuario excluido'
     });
@@ -72,9 +72,21 @@ router.post('/posts' , (req,res)=>{
         autorId,
         categoriaId
     }=req.body;
+    const usuario= usuarios.find(u=> u.id=== autorId);
+    if (!usuario) {
+        return res.status(404).json({
+            mensagem: 'Usuário não encontrado'
+        });
+    }
+
+    if (usuario.perfil !== 'autor') {
+        return res.status(403).json({
+            mensagem: 'Apenas autores podem criar posts'
+        });
+    }
 
     const novoPost={
-        id:this.posts.length+1, 
+        id:posts.length + 1, 
         titulo,
         conteudo,
         dataCriacao,
@@ -86,6 +98,50 @@ router.post('/posts' , (req,res)=>{
     posts.push(novoPost);
     res.status(201).json(novoPost);
 });
+router.put('/posts/:id', (req,res)=> {
+    const id= Number(req.params.id);
+    const post= posts.find(post=> post.id===id);
+    if (!post) {
+        return res.status(404).json({
+            mensagem: 'Post não encontrado'
+        });
+    }
+
+    const {
+        titulo,
+        conteudo,
+        dataCriacao,
+        status,
+        autorId,
+        categoriaId
+    } = req.body;
+
+    post.titulo = titulo;
+    post.conteudo = conteudo;
+    post.dataCriacao = dataCriacao;
+    post.status = status;
+    post.autorId = autorId;
+    post.categoriaId = categoriaId;
+
+    res.json(post);
+});
+router.delete('/posts/:id', (req, res) => {
+    const id = Number(req.params.id);
+
+    const indice = posts.findIndex(post => post.id === id);
+
+    if (indice === -1) {
+        return res.status(404).json({
+            mensagem: 'Post não encontrado'
+        });
+    }
+
+    posts.splice(indice, 1);
+
+    res.json({
+        mensagem: 'Post excluído'
+    });
+    });
 
 module.exports=router;
 
