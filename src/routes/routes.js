@@ -1,5 +1,6 @@
 const express = require('express');
 const usuarios = require('../models/usuarios');
+const posts= require('../models/posts');
 const router= express.Router();
 
 router.get('/usuarios', (req, res) => {
@@ -60,6 +61,30 @@ router.delete('/usuarios/:id', (req,res)=>{
     res.json({
         mensagem:'Usuario excluido'
     });
+});
+
+router.post('/posts' , (req,res)=>{
+    const{
+        titulo,
+        conteudo,
+        dataCriacao,
+        status,
+        autorId,
+        categoriaId
+    }=req.body;
+
+    const novoPost={
+        id:this.posts.length+1, 
+        titulo,
+        conteudo,
+        dataCriacao,
+        status,
+        autorId,
+        categoriaId
+    };
+
+    posts.push(novoPost);
+    res.status(201).json(novoPost);
 });
 
 module.exports=router;
