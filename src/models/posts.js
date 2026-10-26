@@ -1,2 +1,1 @@
-const posts=[];
-module.exports=posts;
+export const posts=[];

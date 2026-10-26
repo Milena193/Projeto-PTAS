@@ -1,2 +1,1 @@
-const comentarios = [];
-module.exports = comentarios;
+export const comentarios = [];

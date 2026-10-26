@@ -22,28 +22,7 @@ router.get('/usuarios/:id', (req, res)=>{
 });
 
 router.post('/usuarios', (req, res)=> {
-    const {nome, email, senha, perfil}= req.body;
-    if(!nome || !email || !senha || !perfil){
-        return res.status(400).json({
-            mensagem:'Os campos são obrigatórios'
-        });
-    }
-    if (!['leitor', 'autor', 'moderador'].includes(perfil)) {
-        return res.status(400).json({
-            mensagem: 'Perfil inválido'
-        });
-    }
-
-
-    const novoUsuario = {
-        id: usuarios.length + 1,
-        nome,
-        email,
-        senha,
-        perfil
-    };
-    usuarios.push(novoUsuario);
-    res.status(201).json(novoUsuario)
+    
 });
 
 router.put('/usuarios/:id' , (req,res) =>{
