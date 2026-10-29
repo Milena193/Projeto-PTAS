@@ -3,7 +3,6 @@ const usuarios = require('../models/usuarios');
 const posts= require('../models/posts');
 const categorias = require('../models/categorias');
 const comentarios = require('../models/comentarios');
-const posts = require('../models/posts');
 const router= express.Router();
 
 router.get('/usuarios', (req, res) => {
@@ -104,8 +103,11 @@ router.get('/posts', (req, res) => {
 router.get('/posts/:id', (req, res) => {
     const id = Number(req.params.id);
     const post = posts.find(
-        post => post.id === id
-    );
+        post => post.id === Number(req.params.id));
+        if(!post){
+            return res.status(404).json({mensagem:'Post não encontrado.'});
+        } res.json(post);
+   
     if(!posts){
         return res.status(404).json({
             mensagem: 'Post não encontrado.'
@@ -286,7 +288,7 @@ router.delete('/categorias/:id', (req, res) => {
         });
     }
 
-    posts.splice(indice, 1);
+    categorias.splice(indice, 1);
 
     res.json({
         mensagem: 'Categoria excluída.'
@@ -363,6 +365,9 @@ router.delete('/comentarios/:id', (req, res) => {
             mensagem: 'Comentário não encontrado.'
         });
     }
+    comentarios.splice(indice,1);
+    res.json({mensagem:'Comentário excluído'})
+
      if (!moderador || moderador.perfil !== 'moderador') {
         return res.status(403).json({
             mensagem: 'Somente moderadores podem excluir comentários'
@@ -379,7 +384,7 @@ router.delete('/comentarios/:id', (req, res) => {
 
     router.get('/buscar', (req, res)=>{
         const{texto, categoria} = req.query;
-        const resultado = posts.filter(post => post.status === 'publicado');
+        let resultado = posts.filter(post => post.status === 'publicado');
         if(texto){
             resultado = resultado.filter(post =>
                 post.titulo.toLowerCase().includes(texto.toLocaleLowerCase()) ||
