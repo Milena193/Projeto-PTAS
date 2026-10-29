@@ -1,65 +1,90 @@
-# Projeto-PTAS
-API: Blog ou Portal de Notícias.
+API — Blog ou Portal de Notícias
 
-A API foi construída para um blog ou portal de notícias.
-O sistema cadastra usuários, cria e gerencia posts, cadastra categorias e realiza comentários.
-Utilizamos o JavaScript, Node.js, Express.js, HTTP/REST e o JSON para a realização do projeto. 
+1. Descrição
 
-Usuários:
-GET/usuarios //lista todos os usuários.
-GET/usuarios/:id //Busca um usuário pelo id.
-POST/usuarios //Cadastra um novo usuário.
-PUT/usuarios/:id //Atualiza um usuário.
-DELETE/usuarios/:id //Exclui um usuário.
+API REST desenvolvida em JavaScript com Node.js e Express para gerenciar um blog ou portal de notícias. O sistema permite cadastrar usuários, criar e editar publicações, organizar categorias e administrar comentários.
 
-Posts:
-GET/posts // Lista os posts publicados.
-GET/posts/:id //Busca um post pelo ID.
-POST/posts //Cria um novo post.
-PUT/posts/:id //Atualiza um post.
-DELETE/posts/:id //Exclui um post.
+2. Tecnologias utilizadas
 
-Categorias:
-GET/categorias //Lista as categorias.
-GET/categorias/:id //Busca uma categoria pelo ID.
-POST/categorias //Cadastra uma nova categoria.
-DELETE/categorias/:id //Exclui uma categoria.
+- JavaScript
+- Node.js
+- Express.js
+- Git e GitHub
 
-Comentários:
-GET/comentarios //Lista os comentários.
-GET/comentarios/:id //Busca um comentário pelo ID.
-POST/comentarios//Cadastra um novo comentário.
-DELETE/comentario/:id //Exclui um comentário.
+3. Instalação e execução
 
-Busca:
-GET/buscar?texto=palavra //Busca posts pelo título ou conteúdo.
-GET/buscar?categoria=nome //Busca posts por categoria.
+Pré-requisitos: Node.js e npm instalados.
 
-Regras:
-1. Apenas usuários com perfil de autor podem publicar posts.
+1. Clone o repositório:
+   "git clone https://github.com/Milena193/Projeto-PTAS.git"
 
-2. Posts com status "rascunho" não aparecem na listagem pública de posts.
+2. Entre na pasta do projeto:
+   "cd Projeto-PTAS"
 
-3. Somente usuários com perfil de moderador podem remover comentários.
+3. Instale as dependências:
+   "npm install"
 
-Entidades: 
+4. Inicie o servidor:
+   "node src/app.js"
+
+Observação: ajuste o último comando caso o arquivo que inicia o servidor tenha outro caminho ou nome. O comando precisa corresponder à estrutura real do projeto.
+
+Se o servidor iniciar corretamente, acesse "http://localhost:3000".
+
+4. Entidades
+
+- Usuários: nome, e-mail, senha e perfil.
+- Posts: título, conteúdo, data, status, autor e categoria.
+- Categorias: organização das publicações por assunto.
+- Comentários: mensagens associadas às publicações.
+
+5. Endpoints
+
 Usuários
+
+- "GET /usuarios" — listar usuários.
+- "GET /usuarios/:id" — buscar usuário por ID.
+- "POST /usuarios" — cadastrar usuário.
+- "PUT /usuarios/:id" — atualizar usuário.
+- "DELETE /usuarios/:id" — excluir usuário.
+
 Posts
+
+- "GET /posts" — listar publicações disponíveis ao público.
+- "GET /posts/:id" — buscar publicação por ID.
+- "POST /posts" — criar publicação.
+- "PUT /posts/:id" — atualizar publicação.
+- "DELETE /posts/:id" — excluir publicação.
+
 Categorias
+
+- "GET /categorias" — listar categorias.
+- "POST /categorias" — cadastrar categoria.
+- "PUT /categorias/:id" — atualizar categoria.
+- "DELETE /categorias/:id" — excluir categoria.
+
 Comentários
-Leitor(Visualiza posts e realiza comentários.)
-Autor(Cria e publica posts.)
-Moderador(Modera comentários.)
 
-Estrutura do projeto:
-src/
-projeto.js
+- "GET /comentarios" — listar comentários.
+- "POST /comentarios" — cadastrar comentário.
+- "DELETE /comentarios/:id" — remover comentário, conforme a regra de moderação.
 
-models/
-usuarios.js
-posts.js
-categorias.js
-comentarios.js
+Busca
 
-routes/
-routes.js
+- "GET /buscar?texto=palavra" — pesquisar publicações por texto, caso essa rota esteja implementada.
+
+6. Regras de negócio
+
+1. Somente usuários com perfil "autor" podem publicar ou editar posts.
+2. Posts com status "rascunho" não devem aparecer na listagem pública.
+3. Somente usuários com perfil "moderador" podem remover comentários.
+
+7. Testes
+
+Os endpoints devem ser testados com uma ferramenta de requisições HTTP, como Postman ou Insomnia. Verifique as respostas, os códigos HTTP e as regras de negócio.
+
+8. Estrutura do projeto
+
+- "src/models": modelos e listas de dados das entidades.
+- "src/routes": definição das rotas da API.
+- Arquivo principal: inicialização do servidor.
