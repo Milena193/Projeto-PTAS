@@ -1,2 +1,1 @@
-const categorias = [];
-module.exports = categorias;
+export const categorias = [];

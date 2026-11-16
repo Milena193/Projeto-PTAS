@@ -1,2 +1,2 @@
-const usuarios = [];
-module.exports = usuarios;
+export const usuarios = [];
+
