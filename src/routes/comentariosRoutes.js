@@ -1,4 +1,4 @@
-import {Router} from 'express'
+import express from 'express'
 import * as controller from '../controlles/comentarios.controller.js'
 
 const router = Router()
