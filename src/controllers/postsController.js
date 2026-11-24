@@ -1,4 +1,4 @@
-import * as service from '../services/posts.service.js'
+import * as service from '../services/postsServices.js'
 
 export function listar(req, res) {
     res.json(service.listar());

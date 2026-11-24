@@ -1,33 +1,35 @@
-import { criar } from "./usuariosService";
+import comentarios from "../models/comentarios.js";
+import usuarios from "../models/usuarios.js";
 
-export default criar({
+
+
+export default function criar({
         texto,
         data,
         usuarioId,
         postId
-    })
+    }, req, res){
 
     if(!texto || !data || !usuarioId || !postId ){
-        return res.status(400). json({
-            mensagem: 'Os campos são obrigatórios.'
-        });
+        throw new Error("Os campos são obrigatórios.")
+        };
     }
     const usuario = usuarios.find(
         usuario => usuario.id === Number(usuarioId)
-    );
+    );{
    if (!usuario) {
-        return res.status(404).json({
+        res.status(404).json({
             mensagem: 'Usuário não encontrado.'
         });
-    }
+    }}
     const post = posts.find(
         post => post.id === Number(postId)
-    );
+    );{
     if (!post) {
-        return res.status(404).json({
+        res.status(404).json({
             mensagem: 'Post não encontrado.'
         });
-    }
+    }}
     const novoComentario={
         id:comentarios.length + 1, 
        texto,

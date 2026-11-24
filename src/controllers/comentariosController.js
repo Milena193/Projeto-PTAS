@@ -1,4 +1,4 @@
-import * as service from '../services/comentarios.service.js'
+import * as service from '../services/comentariosServices.js'
 
 export function listar(req, res) {
     res.json(service.listar());

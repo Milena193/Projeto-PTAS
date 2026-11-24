@@ -1,19 +1,20 @@
 
-const express = require ('express')
+import express from 'express'
+export default router;
 const app = express();
 
 app.use(express.json());
-const {usuarios} = require('./routes/usuarios');
-const { posts } = require('./models/posts');
-const { categorias } = require('./models/categorias');
-const { comentarios } = require('./models/comentarios');
+import usuariosRoutes from './routes/usuariosRoutes.js';
+import postsRoutes from './routes/postsRoutes.js';
+import categoriasRoutes from './routes/categoriasRoutes.js'; 
+import comentariosRoutes from './routes/comentariosRoutes.js';
 
-app.use('/usuarios', categoriasRoutes);
+app.use('/usuarios', usuariosRoutes);
 app.use('/posts', postsRoutes);
 app.use('/categorias', categoriasRoutes);
 app.use('/comentarios', comentariosRoutes);
 
-app.get('/',(req,res) => {
+app.get('/',(res) => {
     res.json({
         mensagem: 'API do blog funcionando'
     });

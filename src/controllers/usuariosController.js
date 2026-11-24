@@ -1,4 +1,4 @@
-import * as service from '../services/usuarios.service.js'
+import * as service from '../services/usuariosService.js'
 
 export function listar(req, res) {
     res.json(service.listar());

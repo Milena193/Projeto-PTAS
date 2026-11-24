@@ -1,10 +1,12 @@
-import express from 'express'
-import * as controller from '../controlles/categorias.controller.js'
+import {Router } from 'express'
+import * as controller from '../controllers/categoriasController.js'
 
-const router = Router()
+const router = Router();
 
-router.get('/', controller.listar());
-router.post('/', controller.criar());
-router.put();
-router.patch();
-router.delete();
+router.get('/', controller.listar);
+router.post('/', controller.criar);
+// router.put();
+// router.patch();
+// router.delete();
+
+export default router;

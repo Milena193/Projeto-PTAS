@@ -1,1 +1,3 @@
-export const comentarios = [];
+const comentarios = [];
+
+export default comentarios;

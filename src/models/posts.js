@@ -1,1 +1,3 @@
-export const posts=[];
+const posts = [];
+
+export default posts;

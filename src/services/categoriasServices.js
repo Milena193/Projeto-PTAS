@@ -1,17 +1,19 @@
-export function criar({nome, descricao}){
+export function criar({nome, descricao} ,req, res){
      if(!nome || !descricao){
-        return res.status(400).json({
+         res.status(400).json({
             mensagem:'Nome e descrição são obrigatórios.'
         });
-     }}
+
+     }
      const novaCategoria={
-        id:categorias.length + 1, 
+       id: categorias.length + 1, 
        nome, 
        descricao
     };
-
-    categorias.push(novaCategoria);
-    res.status(201).json(novaCategoria);
+     categorias.push(novaCategoria);
+     res.status(201).json(novaCategoria);
+}
+   
 
     export function editar(){
 

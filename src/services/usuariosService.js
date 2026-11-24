@@ -6,12 +6,12 @@ export function listar() {
 
 export function criar({nome, email, senha, perfil}) {
     if(!nome || !email || !senha || !perfil){
-        return res.status(400).json({
+        res.status(400).json({
             mensagem:'Os campos são obrigatórios'
         });
     }
     if (!['leitor', 'autor', 'moderador'].includes(perfil)) {
-        return res.status(400).json({
+        res.status(400).json({
             mensagem: 'Perfil inválido'
         });
     }

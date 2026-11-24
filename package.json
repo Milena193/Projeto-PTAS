@@ -4,7 +4,14 @@
   "description": "",
   "main": "projeto.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:up": "docker start projeto-ptas || docker run -d --name projeto-ptas -p 127.0.0.1:27017:27017 -v projeto-ptas-data:/data/db mongo:8",
+    "db:down": "docker stop projeto-ptas",
+    "db:logs": "docker logs -f projeto-ptas",
+    "db:reset": "docker rm -f projeto-ptas; docker volume rm projeto-ptas-data",
+    "predev": "npm run db:up",
+    "dev": "node --watch src/projeto.js",
+    "start": "node src/projeto.js"
   },
   "keywords": [],
   "author": "",
