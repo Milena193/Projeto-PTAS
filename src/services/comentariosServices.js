@@ -1,27 +1,29 @@
 import comentarios from "../models/comentarios.js";
 import usuarios from "../models/usuarios.js";
+import posts from "../models/posts.js";
 
-
+export function listar(){
+    return comentarios;
+};
 
 export default function criar({
         texto,
         data,
         usuarioId,
         postId
-    }, req, res){
+    }){
 
     if(!texto || !data || !usuarioId || !postId ){
         throw new Error("Os campos são obrigatórios.")
         };
-    }
+    
     const usuario = usuarios.find(
         usuario => usuario.id === Number(usuarioId)
-    );{
+    );
    if (!usuario) {
-        res.status(404).json({
-            mensagem: 'Usuário não encontrado.'
-        });
-    }}
+         throw new Error("Usuario não encontrado.")
+        };
+
     const post = posts.find(
         post => post.id === Number(postId)
     );{
@@ -39,4 +41,5 @@ export default function criar({
     };
 
     comentarios.push(novoComentario);
-    res.status(201).json(novoComentario);
+    return novoComentario;
+    }

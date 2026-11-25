@@ -5,6 +5,13 @@ export function listar(req, res) {
 }
 
 export function criar(req, res) {
-    const comentario = service.criar(req.body);
-    res.status(201).json(comentario);
-}
+    try{
+        const comentario= service.default(req.body);
+        res.status(201).json(comentario);
+    }
+   catch(erro){
+    res.status(400).json({
+        mensagem:erro.message
+    });
+   }
+};

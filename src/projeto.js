@@ -1,6 +1,6 @@
 
-import express from 'express'
-export default router;
+import express, { Router } from 'express'
+export default Router;
 const app = express();
 
 app.use(express.json());
