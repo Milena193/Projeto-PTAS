@@ -59,7 +59,7 @@ export async function criar({
        comentarios.push(novoComentario);
     return novoComentario;
  
-    }
+    };
     export async function deletar() {
         const id = Number(req.params.id);
         const moderadorId = Number(req.body.moderadorId);
@@ -71,8 +71,6 @@ export async function criar({
             if (indice === -1) {
                 throw new Error('Comentário não encontrado.') 
             
-            comentarios.splice(indice,1);
-            throw new Error ('Comentário excluído')
             }
         
              if (!moderador || moderador.perfil !== 'moderador') {
@@ -86,5 +84,5 @@ export async function criar({
         catch(error){
              return { error: error.message }
         }
-      }
+      };
     

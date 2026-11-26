@@ -35,8 +35,6 @@ export function editar() {
        throw new Error (novaCategoria);
    }
 
-
-
 export function deletar() {
   const id = Number(req.params.id);
 

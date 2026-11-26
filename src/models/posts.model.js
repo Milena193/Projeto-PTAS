@@ -20,9 +20,9 @@ export async function buscarPorId(id) {
   return colecao().findOne({ _id: new ObjectId(id) });
 }
 
-export async function inserir(categoria) {
+export async function inserir(post) {
   // mongosh: db.posts.insertOne({ titulo: "Estudar", concluida: false })
-  const resultado = await colecao().insertOne(categoria);
+  const resultado = await colecao().insertOne(post);
   return resultado.insertedId;
 }
 

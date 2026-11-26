@@ -23,7 +23,24 @@ export async function editar(req, res) {
     }
 }
 export async function deletar(req, res) {
+try {
+    const id = Number(req.params.id);
 
+    const indice = categorias.findIndex(categorias => categorias.id === id);
 
-    
-}
+    if (indice === -1) {
+        return res.status(404).json({
+            mensagem: 'Categoria não encontrada'
+        });
+    }
+
+    categorias.splice(indice, 1);
+
+    res.json({
+        mensagem: 'Categoria excluída.'
+    });
+    }
+    catch(error){
+        return{error:error.message}
+    }  
+};
