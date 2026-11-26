@@ -1,8 +1,8 @@
 const express = require('express');
-const usuarios = require('../models/usuarios');
-const posts= require('../models/posts');
+const usuarios = require('../models/usuarios.model');
+const posts= require('../models/posts.model');
 const categorias = require('../models/categorias');
-const comentarios = require('../models/comentarios');
+const comentarios = require('../models/comentarios.model');
 const router= express.Router();
 
 router.get('/usuarios', (req, res) => {

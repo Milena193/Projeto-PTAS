@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/', controller.listar);
 router.post('/', controller.criar);
-// router.put();
+router.put('/', controller.editar )
 // router.patch();
 // router.delete();
 

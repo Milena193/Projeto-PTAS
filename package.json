@@ -2,7 +2,7 @@
   "name": "helojuemi",
   "version": "1.0.0",
   "description": "",
-  "main": "projeto.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:up": "docker start projeto-ptas || docker run -d --name projeto-ptas -p 127.0.0.1:27017:27017 -v projeto-ptas-data:/data/db mongo:8",
@@ -10,14 +10,16 @@
     "db:logs": "docker logs -f projeto-ptas",
     "db:reset": "docker rm -f projeto-ptas; docker volume rm projeto-ptas-data",
     "predev": "npm run db:up",
-    "dev": "node --watch src/projeto.js",
-    "start": "node src/projeto.js"
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "express": "^5.2.1"
+    "dotenv": "^18.0.10",
+    "express": "^5.2.1",
+    "mongodb": "^7.9.1"
   }
 }

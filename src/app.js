@@ -1,13 +1,13 @@
 
-import express, { Router } from 'express'
-export default Router;
-const app = express();
-
-app.use(express.json());
+import express from 'express'
 import usuariosRoutes from './routes/usuariosRoutes.js';
 import postsRoutes from './routes/postsRoutes.js';
 import categoriasRoutes from './routes/categoriasRoutes.js'; 
 import comentariosRoutes from './routes/comentariosRoutes.js';
+
+const app = express();
+
+app.use(express.json());
 
 app.use('/usuarios', usuariosRoutes);
 app.use('/posts', postsRoutes);
@@ -21,7 +21,4 @@ app.get('/',(res) => {
 
 });
 
-app.listen(3000, ()=> {
-    console.log('Servidor rodando na porta 3000');
-});
-
+export default app;
